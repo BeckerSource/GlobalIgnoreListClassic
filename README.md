@@ -9,7 +9,9 @@ This version adds functionality to allow for the filtering of ignored players on
 
 Examples would be:
 > You only want to filter chat for players in a channel named "LookingForGroup".
+
 > You only want to filter whispers for players (add the event type name "CHAT_MSG_WHISPER").
+
 > You want to do both of the above examples.
 
 
