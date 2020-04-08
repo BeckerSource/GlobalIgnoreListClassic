@@ -1,5 +1,5 @@
-# GlobalIgnoreListClassicPlus
-Global Ignore List Classic with Channel &amp; Event Filtering
+# GlobalIgnoreListClassic (Plus)
+Global Ignore List Classic with added Channel &amp; Event Filtering
 
 Based on this add-on (12-10-19 04:37 PM, v1.13.3):
 > https://www.wowinterface.com/downloads/info25034-GlobalIgnoreListClassic.html
