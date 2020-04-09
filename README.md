@@ -19,4 +19,4 @@ The new configurable field is on the "Options" tab in the Global Ignore List opt
 "Ignore only these channel names and events"
 
 Mouse-over the edit box field for a tooltip with instructions:
-> "Enter a list of channel names (LFG, LookingForGroup, etc) or event types (CHAT_MSG_WHISPER, CHAT_MSG_PARTY, etc) to ignore separated by semi-colons. Leave blank to ignore all channels and types (use default behavior)."
+> "Enter a list of channel names (LFG, LookingForGroup, etc) and event types (CHAT_MSG_WHISPER, CHAT_MSG_PARTY, etc) to ignore, separated by semi-colons. Leave blank to ignore all channels and types (use default behavior)."
