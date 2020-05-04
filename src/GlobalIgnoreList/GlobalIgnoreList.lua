@@ -371,6 +371,8 @@ local function ResetIgnoreDB()
 		autoTime		= 600,		
 		defexpire		= 0,
 		ignoreChannels	= {},
+		ignoreChannelsBypass = false,
+		ignoreGroupInvites = true,
 		ignoreList		= {},
 		factionList		= {},
 		dateList		= {},
@@ -737,6 +739,14 @@ local function ApplicationStartup(self)
 	if GlobalIgnoreDB.ignoreChannels == nil then
 		GlobalIgnoreDB.ignoreChannels = {}
 	end
+
+	if GlobalIgnoreDB.ignoreChannelsBypass == nil then
+		GlobalIgnoreDB.ignoreChannelsBypass = false
+	end
+
+	if GlobalIgnoreDB.ignoreGroupInvites == nil then
+		GlobalIgnoreDB.ignoreGroupInvites = true
+	end
 	
 	if not tonumber(GlobalIgnoreDB.defexpire) then
 		GlobalIgnoreDB.defexpire = 0
@@ -910,7 +920,7 @@ local function EventHandler (self, event, sender, arg1, ...)
 	
 		sender = addServer(sender)
 
-		if hasGlobalIgnored(sender) > 0 then
+		if hasGlobalIgnored(sender) > 0 and GlobalIgnoreDB.ignoreGroupInvites == true then
 			DeclineGroup()			
 			ShowMsg("Automatically declined invite from " .. sender)
 			StaticPopup_Hide("PARTY_INVITE")
@@ -1615,7 +1625,7 @@ local function chatMessageFilter (self, event, message, from, t1, t2, t3, t4, t5
 				end
 	  		end
 	  	end
-			
+		
 		return false
 
 	elseif event == "CHAT_MSG_CHANNEL_NOTICE_USER" and message == "INVITE" then
@@ -1971,6 +1981,8 @@ function SlashCmdList.GIGNORE (msg)
 end
 
 function IsIgnoreChannelEvent(chname, event)
+	if GlobalIgnoreDB.ignoreChannelsBypass == true then return false end
+
 	if (not chname and not event) or
 	   (chname == '' and event == '') or
 	   GlobalIgnoreDB.ignoreChannels == nil or #GlobalIgnoreDB.ignoreChannels == 0 

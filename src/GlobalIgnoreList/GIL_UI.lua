@@ -1287,7 +1287,7 @@ local function CreateUIFrames()
 	-- IGNORE LIST OPTIONS
 
 	Text = Tab3Frame:CreateFontString("FontString", "OVERLAY", "GameFontNormalLarge")
-	Text:SetPoint("TOPLEFT", Tab3Frame, "TOPLEFT", -8, -18)
+	Text:SetPoint("TOPLEFT", Tab3Frame, "TOPLEFT", -8, -6)
 	Text:SetWidth(200)
 	Text:SetText(L["OPT_8"])
 	
@@ -1320,7 +1320,7 @@ local function CreateUIFrames()
 	Button:SetScript("OnClick" ,function(self) GlobalIgnoreDB.trackChanges = (self:GetChecked() or false) end) 
 
 	Button = Tab3Frame:CreateFontString("GILFrame3ExpText", "OVERLAY", "GameFontHighlight")
-	Button:SetPoint("TOPLEFT", GILFrame3TrackChanges, "BOTTOMLEFT", 0, 0)
+	Button:SetPoint("TOPLEFT", GILFrame3TrackChanges, "BOTTOMLEFT", 0, -2)
 	Button:SetText(L["OPT_5"])
 
 	Button = CreateFrame("EditBox", "GILFrame3Exp", Tab3Frame, "InputBoxTemplate")
@@ -1333,12 +1333,12 @@ local function CreateUIFrames()
 	Button:SetScript("OnEscapePressed", function(self) self:SetText(GlobalIgnoreDB.defexpire) end)
 
 	Text = Tab3Frame:CreateFontString("GILFrame3IgnoreChannelsText", "OVERLAY", "GameFontHighlight")
-	Text:SetPoint("TOPLEFT", GILFrame3ExpText, "BOTTOMLEFT", 0, -8)
+	Text:SetPoint("TOPLEFT", GILFrame3ExpText, "BOTTOMLEFT", 0, -10)
 	Text:SetText(L["OPT_15"])
 
 	Button = CreateFrame("EditBox", "GILFrame3IgnoreChannels", Tab3Frame, "InputBoxTemplate")
 	Button:SetPoint("TOPLEFT", GILFrame3IgnoreChannelsText, "TOPRIGHT", 6, 4)
-	Button:SetWidth(400)
+	Button:SetWidth(350)
 	Button:SetHeight(20)
 	Button:SetAutoFocus(false)
 	Button:SetScript("OnShow",          function(self) self:SetText(GetIgnoreChannels()) end)
@@ -1356,15 +1356,29 @@ local function CreateUIFrames()
 			GameTooltip:Hide()
 		end)
 
+	Button = CreateFrame("CheckButton", "GILFrame3IgnoreChannelsBypass", Tab3Frame, "UICheckButtonTemplate")
+	Button:SetPoint("TOPLEFT", GILFrame3IgnoreChannels, "TOPRIGHT", 0, 4)
+	 _G[Button:GetName().."Text"]:SetText(L["OPT_16"])
+	 _G[Button:GetName().."Text"]:SetFontObject("GameFontHighlight")
+	Button:SetScript("OnShow",  function(self) self:SetChecked(GlobalIgnoreDB.ignoreChannelsBypass == true) end)
+	Button:SetScript("OnClick" ,function(self) GlobalIgnoreDB.ignoreChannelsBypass = (self:GetChecked() or false) end)
+
+	Button = CreateFrame("CheckButton", "GILFrame3IgnoreGroupInvites", Tab3Frame, "UICheckButtonTemplate")
+	Button:SetPoint("TOPLEFT", GILFrame3IgnoreChannelsText, "BOTTOMLEFT", 0, -2)
+	 _G[Button:GetName().."Text"]:SetText(L["OPT_17"])
+	 _G[Button:GetName().."Text"]:SetFontObject("GameFontHighlight")
+	Button:SetScript("OnShow",  function(self) self:SetChecked(GlobalIgnoreDB.ignoreGroupInvites == true) end)
+	Button:SetScript("OnClick" ,function(self) GlobalIgnoreDB.ignoreGroupInvites = (self:GetChecked() or false) end)
+
 	-- CHAT FILTER OPTIONS
 
 	Text = Tab3Frame:CreateFontString("FontString", "OVERLAY", "GameFontNormalLarge")
-	Text:SetPoint("TOPLEFT", GILFrame3IgnoreChannelsText, "BOTTOMLEFT", -22, -16)
+	Text:SetPoint("TOPLEFT", GILFrame3IgnoreChannelsText, "BOTTOMLEFT", -22, -36)
 	Text:SetWidth(200)
 	Text:SetText(L["OPT_9"])
 
 	Button = CreateFrame("CheckButton", "GILFrame3EnableFilter", Tab3Frame, "UICheckButtonTemplate")
-	Button:SetPoint("TOPLEFT", Text, "BOTTOMLEFT", 16, -6)
+	Button:SetPoint("TOPLEFT", Text, "BOTTOMLEFT", 16, 0)
 	 _G[Button:GetName().."Text"]:SetText(L["OPT_7"])
 	 _G[Button:GetName().."Text"]:SetFontObject("GameFontHighlight")
 	Button:SetScript("OnShow",  function(self) self:SetChecked(GlobalIgnoreDB.spamFilter == true) end)
@@ -1385,7 +1399,7 @@ local function CreateUIFrames()
 	Button:SetScript("OnClick" ,function(self) GlobalIgnoreDB.autoUpdate = (self:GetChecked() or false) end)
 
 	Button = CreateFrame("CheckButton", "GILFrame3SkipGuild", Tab3Frame, "UICheckButtonTemplate")
-	Button:SetPoint("TOPLEFT", Text, "BOTTOMLEFT", 450, -6)
+	Button:SetPoint("TOPLEFT", Text, "BOTTOMLEFT", 450, 0)
 	 _G[Button:GetName().."Text"]:SetText(L["OPT_12"])
 	 _G[Button:GetName().."Text"]:SetFontObject("GameFontHighlight")
 	Button:SetScript("OnShow",  function(self) self:SetChecked(GlobalIgnoreDB.skipGuild == true) end)
