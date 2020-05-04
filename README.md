@@ -14,6 +14,7 @@ Examples would be:
 
 > You want to do both of the above examples.
 
+Also Added:
 > Bypass toggle for channel and event filters.
 
 > Group/raid invite toggle.
